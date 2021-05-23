@@ -3,53 +3,53 @@
     <div class="card-body h250 p-0 rounded-xxl overflow-hidden m-3"><img src="https://via.placeholder.com/960x250.png"
                                                                          alt="image"></div>
     <div class="card-body p-0 position-relative">
-      <figure class="avatar position-absolute w100 h100 z-index-1" style="top:-40px; left: 30px;"><img
+      <figure class="avatar position-absolute w100 h100 z-index-1" style="top:-40px; left: 30px;" data-lightbox="roadtrip"><img
         [src]="user.avatar" alt="image" class="float-right p-1 bg-white rounded-circle w-100 h-100"></figure>
-      <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">{{user.username}}<span
+      <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15"><a [routerLink]="['/users/user-profile',user.userId]">{{user.username}}</a><span
         class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">{{user.email}}</span></h4>
       <div class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">
-        <div class="input-group mb-3" *ngIf="isMe">
-          <div style="text-align: center; width: 170px">
-            <div type="button"
-                 class="d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
+        <div  *ngIf="isMe">
+          <div style="text-align: center; width: 200px">
+            <div
+              class="d-none d-lg-block cursor-pointer bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
                  [routerLink]="['/users/update-profile',user.userId]">Update profile
             </div>
           </div>
         </div>
-        <div class="input-group mb-3" *ngIf="!this.isMe">
+        <div style="margin-right: 15px" *ngIf="!this.isMe">
           <div *ngIf="!friendShip" style="text-align: center; width: 170px">
-            <div type="button"
-                 class="d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
+            <div
+              class="d-none d-lg-block cursor-pointer  bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
                  (click)="addFriend()">Add Friend
             </div>
           </div>
           <div *ngIf="friendShip && friendShip.status == false" style="text-align: center; width: 170px">
             <div *ngIf="friendShip.receiver.userId == user.userId" class="row">
-              <div type="button"
-                   class="col-12 d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
+              <div
+                class="col-12 d-none cursor-pointer  d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
                    (click)="unFriend()">Cancel
               </div>
             </div>
             <div *ngIf="friendShip.receiver.userId != user.userId " class="row">
-              <div type="button"
-                   class="col-6 d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
+              <div
+                class="col-6 d-none cursor-pointer d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
                    (click)="unFriend()">Decline
               </div>
-              <div type="button"
-                   class="col-6 d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
+              <div
+                class="col-6 d-none cursor-pointer d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
                    (click)="accept()">Accept
               </div>
             </div>
           </div>
           <div *ngIf="friendShip && friendShip.status == true" style="text-align: center; width: 170px">
-            <div type="button"
-                 class="d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary "
+            <div
+              class="d-none d-lg-block cursor-pointer  bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary "
                  (click)="unFriend()">Unfriend
             </div>
           </div>
         </div>
 
-        <a href="#" class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"><i
+        <a href="#" title="send mail" class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"><i
           class="feather-mail font-md"></i></a>
         <a href="#" id="dropdownMenu4" class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i

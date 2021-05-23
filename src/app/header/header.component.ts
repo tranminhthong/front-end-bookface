@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
+import {UsersService} from '../user/service/users.service';
+import {User} from '../user/user';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +13,10 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
   username: string;
   userId: number;
+  user: User = {};
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
@@ -21,6 +25,7 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
     this.userId = this.authService.getUserId();
+    this.getUser(this.username);
   }
 
   goToUserProfile() {
@@ -33,5 +38,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
+  getUser(uname: string) {
+    this.authService.getUserByUserName(uname).subscribe(user => {
+      this.user = user;
+    });
+  }
 }
 

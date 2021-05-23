@@ -5,6 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Friend} from '../Friend';
 import {UsersService} from '../service/users.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -34,9 +36,8 @@ export class UserHeaderComponent implements OnInit {
   }
 
   getFriendByDoubleId(id: number) {
-    let senderId = this.localStorage.retrieve('userId');
-    let receiverId = id;
-    this.userService.getFriendByDoubleId(senderId, receiverId).subscribe(value => {
+    const senderId = this.localStorage.retrieve('userId');
+    this.userService.getFriendByDoubleId(senderId, id).subscribe(value => {
       console.log(value);
       this.friendShip = value;
     });

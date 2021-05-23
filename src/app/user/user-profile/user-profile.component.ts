@@ -5,6 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {parse} from '@angular/compiler/src/render3/view/style_parser';
 import {Friend} from '../Friend';
 import {LocalStorageService} from 'ngx-webstorage';
+import {PostModel} from '../../post/post-model';
+import {PostService} from '../../services/post.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,14 +17,17 @@ export class UserProfileComponent implements OnInit {
   id = -1;
   user: User = {};
   listFriend: User[] = [];
+  posts: PostModel[];
 
   constructor(private userService: UsersService,
               private activatedRoute: ActivatedRoute,
-              private localStorage: LocalStorageService) {
+              private localStorage: LocalStorageService,
+              private postService: PostService) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.id = +paramMap.get('id');
       this.getUser(this.id);
       this.getAllFriend(this.id);
+      this.getAllPostsById(this.id);
     });
   }
 
@@ -41,5 +46,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  test() {}
+  getAllPostsById(id: number) {
+    this.postService.getAllPostsByUserId(id).subscribe(
+      posts => this.posts = posts,
+      error => console.log(error.message)
+    );
+  }
+
 }

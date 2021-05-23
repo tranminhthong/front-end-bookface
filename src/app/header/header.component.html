@@ -157,7 +157,7 @@
         <button (click)="logout()" ngbDropdownItem>Logout</button>
       </div>
       <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
-        <img class="account-icon" src="http://pm1.narvii.com/7673/6efc9f8d5c75f650028c0c403887fd9e5fa9ca09r1-480-480v2_00.jpg">
+        <img class="shadow-sm rounded-circle h35 w35" [src]="user.avatar">
         {{username}}
       </button>
     </div>

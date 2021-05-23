@@ -1,7 +1,7 @@
 <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3" *ngFor="let post of posts.slice().reverse()">
   <div class="card-body p-0 d-flex">
-    <figure class="avatar me-3"><img [src]="post.userAvatar" alt="image" class="shadow-sm rounded-circle w45"></figure>
-    <h4 class="fw-700 text-grey-900 font-xssss mt-1">{{post.userName}}<span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">{{post.duration}}</span></h4>
+    <figure class="avatar me-3"><img [src]="post.userAvatar" alt="image" class="shadow-sm rounded-circle h45 w45"></figure>
+    <h4 class="fw-700 text-grey-900 font-xs mt-1">{{post.userName}}<span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">{{post.duration}}</span></h4>
     <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
     <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
       <div class="card-body p-0 d-flex">
