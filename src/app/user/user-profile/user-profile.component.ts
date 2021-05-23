@@ -41,4 +41,5 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  test() {}
 }
