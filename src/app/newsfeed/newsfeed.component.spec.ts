@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FriendPostComponent } from './friend-post.component';
+import { NewsfeedComponent } from './newsfeed.component';
 
-describe('FriendPostComponent', () => {
-  let component: FriendPostComponent;
-  let fixture: ComponentFixture<FriendPostComponent>;
+describe('NewsfeedComponent', () => {
+  let component: NewsfeedComponent;
+  let fixture: ComponentFixture<NewsfeedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FriendPostComponent ]
+      declarations: [ NewsfeedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FriendPostComponent);
+    fixture = TestBed.createComponent(NewsfeedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

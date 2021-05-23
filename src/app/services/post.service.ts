@@ -4,35 +4,43 @@ import {environment} from '../../environments/environment';
 // @ts-ignore
 import {Post} from '../model/post';
 import {Observable} from 'rxjs';
+import {PostModel} from '../post/post-model';
+import {PostPayload} from '../post/create-post/post.payload';
 
-const API_URL = `${environment.apiUrl}`;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private httpClient: HttpClient) {
+  private apiServerUrl = environment.apiBaseServer;
+
+  constructor(private http: HttpClient) {
   }
 
-  getAllPost(): Observable<Post[]>{
-    return this.httpClient.get<Post[]>(API_URL + '/posts');
+  getAllPosts(): Observable<Array<PostModel>> {
+    return this.http.get<Array<PostModel>>(`${this.apiServerUrl}/posts`);
   }
 
-  createStatusPost(post: Post): Observable<Post> {
-    return this.httpClient.post<Post>(API_URL + '/posts/create', post);
+  createPost(postPayload: PostPayload): Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/posts`, postPayload);
   }
 
-  editStatusPost(id: number, post: Post): Observable<any> {
-    return this.httpClient.put<any>(`${API_URL}/posts/update`, post);
+  updatePost(postPayload: PostPayload): Observable<any> {
+    return this.http.put(`${this.apiServerUrl}/posts/update`, postPayload);
   }
 
-  findPostById(id: Post[]): Observable<Post> {
-    return this.httpClient.get<Post>(`${API_URL}/posts/find/${id}`);
+
+  getAllPostsByUserId(userId: number): Observable<PostModel[]> {
+    return this.http.get<PostModel[]>(`${this.apiServerUrl}/posts/by-user/` + userId);
   }
 
-  deletePostById(id: number): Observable<Post> {
-    return this.httpClient.delete<Post>(`${API_URL}/posts//delete/${id}`);
+  deletePostById(postId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiServerUrl}/posts/delete/` + postId);
   }
-
 }
+
+
+
+

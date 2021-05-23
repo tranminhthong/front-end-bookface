@@ -23,7 +23,7 @@ export class AuthService {
     username: this.getUserName()
   };
 
-  private apiServerUrl = environment.apiBaseServer;
+  private apiServerUrl = `${environment.apiBaseServer}`;
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) {
   }

@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080',
+  production: true,
+  apiUrl: 'https://book-face-be.herokuapp.com',
   firebaseConfig: {
     apiKey: 'AIzaSyAzjvclwX9lyH3u4OkS0FGSUVbTYQbL4Ac',
     authDomain: 'fir-upload-7af9a.firebaseapp.com',
@@ -14,7 +14,7 @@ export const environment = {
     appId: '1:841290005883:web:b1e1d757ca0a47165491de',
     measurementId: 'G-85SL87VQBV'
   },
-  apiBaseServer: 'http://localhost:8080'
+  apiBaseServer: 'https://book-face-be.herokuapp.com'
 };
 
 /*

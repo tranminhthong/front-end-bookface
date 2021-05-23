@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../User';
+import {User} from '../user';
 import {LocalStorageService} from 'ngx-webstorage';
 import {ActivatedRoute} from '@angular/router';
 import {Friend} from '../Friend';

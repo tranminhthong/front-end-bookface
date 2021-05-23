@@ -4,6 +4,7 @@ import {UpdateProfileComponent} from '../user/update-profile/update-profile.comp
 import {UserProfileComponent} from '../user/user-profile/user-profile.component';
 import {FriendComponent} from '../user/friend/friend.component';
 import {HomeComponent} from './home.component';
+import {NewsfeedComponent} from '../newsfeed/newsfeed.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
     path:'',
     component: HomeComponent,
     children: [
+      {
+        path: '',
+        component: NewsfeedComponent,
+      },
       {
         path: 'users/update-profile/:id',
         component: UpdateProfileComponent
