@@ -1,10 +1,11 @@
 <div class="col-lg-12">
   <div class="card w-100 border-0 p-0 bg-white shadow-xss rounded-xxl">
-    <div class="card-body h250 p-0 rounded-xxl overflow-hidden m-3"><img src="https://via.placeholder.com/960x250.png"
-                                                                         alt="image"></div>
+    <div class="card-body h240 p-0 rounded-xxl overflow-hidden m-3 z-index-1"><a [href]="user.avatar" data-lightbox="roadtrip"><img class="position-absolute w-100" style="z-index: 0 !important;" [src]="user.avatar"
+                                                                                                                                    alt="image"></a></div>
     <div class="card-body p-0 position-relative">
-      <figure class="avatar position-absolute w100 h100 z-index-1" style="top:-40px; left: 30px;" data-lightbox="roadtrip"><img
-        [src]="user.avatar" alt="image" class="float-right p-1 bg-white rounded-circle w-100 h-100"></figure>
+      <figure class="avatar position-absolute w100 h100 z-index-1" style="top:-40px; left: 30px;">
+        <a [href]="user.avatar" data-lightbox="roadtrip"><img
+          [src]="user.avatar" alt="image" class="float-right p-1 bg-white rounded-circle w-100 h-100"></a></figure>
       <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15"><a [routerLink]="['/users/user-profile',user.userId]">{{user.username}}</a><span
         class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">{{user.email}}</span></h4>
       <div class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">

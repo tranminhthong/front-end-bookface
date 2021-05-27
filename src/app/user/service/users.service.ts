@@ -36,7 +36,7 @@ export class UsersService {
     return this.http.get<User[]>(`${API_URL}/users/list-friend/${id}`);
   }
 
-  unFriend(id: string): Observable<any> {
+  unFriend(id: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/friend/unfriend/${id}`);
   }
 

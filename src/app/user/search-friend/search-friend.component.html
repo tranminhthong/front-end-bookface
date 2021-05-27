@@ -25,7 +25,7 @@
                          [routerLink]="['/users/user-profile',user.userId]">{{user.username}}</a></strong>
                       <app-mutual-friend [userId]="user.userId"></app-mutual-friend>
                     </h6>
-                    <app-friend-button [user]="user" [id]="user.userId"></app-friend-button>
+                    <div style="margin-left: 550px"><app-friend-button [user]="user" [id]="user.userId"></app-friend-button></div>
                   </div>
                 </div>
               </ng-container>

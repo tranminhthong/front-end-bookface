@@ -1,31 +1,69 @@
-<div>
+<div id="friend">
   <div *ngIf="!friendShip">
-    <button style="margin-left: 550px"
+    <button
             class="d-none d-lg-block cursor-pointer  bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
             (click)="addFriend()">Add Friend
     </button>
   </div>
   <div *ngIf="friendShip && friendShip.status == false">
-    <button *ngIf="friendShip.receiver.userId == user.userId" style="margin-left: 550px"
+    <button *ngIf="friendShip.receiver.userId == user.userId"
             class="d-none cursor-pointer  d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
             (click)="unFriend()">Cancel
     </button>
-    <div *ngIf="friendShip.receiver.userId != user.userId" style="margin-left: 550px" class="row">
+    <div *ngIf="friendShip.receiver.userId != user.userId" class="row">
       <button
               class="col-6 d-none cursor-pointer d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
               (click)="accept()">Accept
       </button>
-      <button *ngIf="friendShip.receiver.userId != user.userId "
+      <a *ngIf="friendShip.receiver.userId != user.userId " type="button"
               class="col-6 d-none cursor-pointer d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
-              (click)="unFriend()">
-        Delete
-      </button>
+              (click)="openModal('decline')">
+        Decline
+      </a>
     </div>
   </div>
   <div *ngIf="friendShip && friendShip.status == true">
-    <button style="margin-left: 550px"
-            class="d-block cursor-pointer bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3">
+    <button
+            class="d-block cursor-pointer bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
+    (click)="openModal('unfriend')">
       Unfriend
     </button>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="decline" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Decline</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>Are you sure you want to decline the friend request?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+        <button type="button" class="btn btn-primary" (click)="unFriend()">YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="unfriend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Unfriend</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>Are you sure you want to unfriend?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+        <button type="button" class="btn btn-danger" (click)="unFriend()">YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+
