@@ -10,5 +10,4 @@ export const environment = {
     appId: '1:841290005883:web:b1e1d757ca0a47165491de',
     measurementId: 'G-85SL87VQBV'
   },
-  apiBaseServer: 'https://book-face-be.herokuapp.com'
 };

@@ -1,0 +1,31 @@
+<div>
+  <div *ngIf="!friendShip">
+    <button style="margin-left: 550px"
+            class="d-none d-lg-block cursor-pointer  bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
+            (click)="addFriend()">Add Friend
+    </button>
+  </div>
+  <div *ngIf="friendShip && friendShip.status == false">
+    <button *ngIf="friendShip.receiver.userId == user.userId" style="margin-left: 550px"
+            class="d-none cursor-pointer  d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary"
+            (click)="unFriend()">Cancel
+    </button>
+    <div *ngIf="friendShip.receiver.userId != user.userId" style="margin-left: 550px" class="row">
+      <button
+              class="col-6 d-none cursor-pointer d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
+              (click)="accept()">Accept
+      </button>
+      <button *ngIf="friendShip.receiver.userId != user.userId "
+              class="col-6 d-none cursor-pointer d-lg-block bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3"
+              (click)="unFriend()">
+        Delete
+      </button>
+    </div>
+  </div>
+  <div *ngIf="friendShip && friendShip.status == true">
+    <button style="margin-left: 550px"
+            class="d-block cursor-pointer bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3">
+      Unfriend
+    </button>
+  </div>
+</div>

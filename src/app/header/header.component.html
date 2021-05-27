@@ -9,16 +9,19 @@
     </div>
 
 
-    <form action="#" class="float-left header-search">
+    <form action="#" class="float-left header-search" (ngSubmit)="search(key.value)">
       <div class="form-group mb-0 icon-input">
         <i class="feather-search font-sm text-grey-400"></i>
-        <input type="text" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
+        <input type="text" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg" #key>
       </div>
     </form>
     <a href="default.html" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
     <a href="default-storie.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-zap font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
     <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
-    <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+    <div *ngIf="['ROLE_ADMIN'].indexOf(role)!== -1">
+      <a href="default-group.html" routerLink="/admin" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+
+    </div>
     <a href="shop-2.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
     <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
@@ -215,6 +218,16 @@
       <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
         <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">CONTACTS</h4>
         <ul class="list-group list-group-flush">
+          <li *ngFor="let user of users" class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
+            <figure class="avatar float-left mb-0 me-2">
+              <img [src]="user.avatar" alt="image" class="w35">
+            </figure>
+            <h3 class="fw-700 mb-0 mt-0">
+              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Hurin Seary</a>
+            </h3>
+            <span class="badge badge-primary text-white badge-pill fw-500 mt-0">2</span>
+
+          </li>
           <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
             <figure class="avatar float-left mb-0 me-2">
               <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
@@ -224,128 +237,13 @@
             </h3>
             <span class="badge badge-primary text-white badge-pill fw-500 mt-0">2</span>
           </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Victor Exrixon</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Surfiya Zakir</a>
-            </h3>
-            <span class="bg-warning ms-auto btn-round-xss"></span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Goria Coast</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Hurin Seary</a>
-            </h3>
-            <span class="badge mt-0 text-grey-500 badge-pill pe-0 font-xsssss">4:09 pm</span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">David Goria</a>
-            </h3>
-            <span class="badge mt-0 text-grey-500 badge-pill pe-0 font-xsssss">2 days</span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Seary Victor</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Ana Seary</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-
         </ul>
       </div>
-      <div class="section full pe-3 ps-4 pt-4 pb-4 position-relative feed-body">
-        <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">GROUPS</h4>
-        <ul class="list-group list-group-flush">
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-
-            <span class="btn-round-sm bg-primary-gradiant me-3 ls-3 text-white font-xssss fw-700">UD</span>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Studio Express</a>
-            </h3>
-            <span class="badge mt-0 text-grey-500 badge-pill pe-0 font-xsssss">2 min</span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-
-            <span class="btn-round-sm bg-gold-gradiant me-3 ls-3 text-white font-xssss fw-700">AR</span>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Armany Design</a>
-            </h3>
-            <span class="bg-warning ms-auto btn-round-xss"></span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-
-            <span class="btn-round-sm bg-mini-gradiant me-3 ls-3 text-white font-xssss fw-700">UD</span>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">De fabous</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-        </ul>
-      </div>
-      <div class="section full pe-3 ps-4 pt-0 pb-4 position-relative feed-body">
-        <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">Pages</h4>
-        <ul class="list-group list-group-flush">
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-
-            <span class="btn-round-sm bg-primary-gradiant me-3 ls-3 text-white font-xssss fw-700">AB</span>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Armany Seary</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-
-            <span class="btn-round-sm bg-gold-gradiant me-3 ls-3 text-white font-xssss fw-700">SD</span>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Entropio Inc</a>
-            </h3>
-            <span class="bg-success ms-auto btn-round-xss"></span>
-          </li>
-
-        </ul>
-      </div>
-
     </div>
   </div>
 
 
+<app-chat-box [receiver]="receiver"></app-chat-box>
   <!-- right chat -->
 
 

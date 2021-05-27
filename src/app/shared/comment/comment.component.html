@@ -1,1 +1,99 @@
-<p>comment works!</p>
+<div id="main-container">
+  <div *ngFor="let comment of comments">
+  <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5">
+    <div class="row">
+      <figure class="avatar position-absolute left-0 ms-2 mt-1 col-1">
+        <a type="button" class="fw-700 text-grey-900 font-xssss mt-1"
+           (click)="goToUserProfile(comment.userId)">
+        <img [src]="comment?.userAvatar" alt="image" class="shadow-sm rounded-circle w35 h35">
+        </a>
+      </figure>
+      <div class="chat col-md-10 p-3 bg-greylight rounded-xxl d-block text-left theme-dark-bg ms-3">
+          <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">
+            {{comment?.username}}
+          </h4>
+          <p class="fw-500 text-grey-500 lh-20 font-xssss w-100 mt-2 mb-0">{{comment.text}}</p>
+          <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-50">{{comment.duration}}</span>
+      </div>
+      <div class="col-1">
+        <a *ngIf="comment.username === currentUser?.username" class="ms-auto" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+        <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu">
+          <div class="card-body p-0 d-flex">
+            <i class="feather-bookmark text-grey-500 me-3 font-lg"></i>
+            <a (click)="openModal('edit', comment)" type="button" class="fw-600 text-grey-900 font-xssss mt-0 me-4">Edit Comment</a>
+          </div>
+          <div class="card-body p-0 d-flex mt-2">
+            <i class="feather-alert-circle text-grey-500 me-3 font-lg"></i>
+            <a (click)="openModal('delete', comment)" type="button" class="fw-600 text-grey-900 font-xssss mt-0 me-4">Delete Comment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-emotion-comment [comment]="comment"></app-emotion-comment>
+  </div>
+</div>
+</div>
+
+<!-------------------------------create comment----------------------------->
+<div class="card-body p-0 mt-3 position-relative">
+  <figure class="avatar position-absolute ms-2 mt-1 top-5">
+    <img [src]="currentUser?.avatar" alt="image" class="shadow-sm rounded-circle w30 h30"></figure>
+  <form [formGroup]="addCommentForm" (ngSubmit)="createComment()">
+    <input formControlName="text" name="message"
+           class=" bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg"
+           placeholder="Write a comment..."/>
+  </form>
+</div>
+
+<!-------------------------------edit comment----------------------------->
+<div class="modal fade" id="editCommentModal" tabindex="-1" role="dialog" aria-labelledby="commentEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="card-body p-0 mt-3 position-relative">
+            <figure class="avatar position-absolute ms-2 mt-1 top-5">
+              <img [src]="currentUser?.avatar" alt="image" class="shadow-sm rounded-circle w30 h30"></figure>
+            <form [formGroup]="editCommentForm" (ngSubmit)="updateComment()" id="editCommentForm">
+              <input type="hidden" formControlName="id">
+              <input formControlName="text" type="text"
+                     class=" bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg"/>
+              <input type="hidden" formControlName="likeCount">
+              <input type="hidden" formControlName="heartCount">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="close-edit-btn" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+            <button type="submit" data-dismiss="modal" class="btn btn-primary" form="editCommentForm">Update</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-------------------------------delete comment----------------------------->
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete comment?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-delete-btn">No</button>
+          <button (click)="deleteComment()" class="btn btn-danger" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

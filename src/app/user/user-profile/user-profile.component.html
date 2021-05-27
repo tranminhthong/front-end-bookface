@@ -66,17 +66,21 @@
             </div>
           </div>
 
-          <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3">
+          <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3" *ngIf="isUser">
             <div class="card-body d-flex align-items-center  p-4">
-              <h4 class="fw-700 mb-0 font-xssss text-grey-900">Friends</h4>
+              <h4 class="fw-700 mb-0 font-xssss text-grey-900">Friends <span class="font-xssss fw-500 mt-1 lh-3 text-grey-500">({{listFriend.length}})</span></h4>
               <a [routerLink]="['/users/list-friend/',user.userId]" class="fw-600 ms-auto font-xssss text-primary">See all</a>
             </div>
             <div class="card-body d-block pt-0 pb-2">
               <div class="row">
-                <div class="col-6 mb-2 pe-1" *ngFor="let user of listFriend;index as i">
-                  <a *ngIf="i<4" [routerLink]="['/users/user-profile',user.userId]"><img [src]="user.avatar" alt="image" class="img-fluid rounded-3 h-75 w-100">
-                  <p class="text-black font-xs">{{user.username}}</p>
-                  </a>
+                <div class="col-6 mb-2 pe-1 text-center" *ngFor="let user of listFriend;index as i">
+                  <div *ngIf="i<4">
+                    <a [routerLink]="['/users/user-profile',user.userId]">
+                      <img [src]="user.avatar" alt="image" class="img-fluid rounded-3 h100 w-100 mb-1">
+                      <p class="text-black font-sm mb-0">{{user.username}}</p>
+                    </a>
+                    <app-mutual-friend [userId]="user.userId"></app-mutual-friend>
+                  </div>
 
                 </div>
               </div>

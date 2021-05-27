@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   user: User = {};
   listFriend: User[] = [];
   posts: PostModel[];
+  isUser = false;
 
   constructor(private userService: UsersService,
               private activatedRoute: ActivatedRoute,
@@ -28,6 +29,7 @@ export class UserProfileComponent implements OnInit {
       this.getUser(this.id);
       this.getAllFriend(this.id);
       this.getAllPostsById(this.id);
+      this.checkUser();
     });
   }
 
@@ -53,4 +55,11 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  checkUser() {
+    if (this.localStorage.retrieve('userId')) {
+      this.isUser = true;
+    } else {
+      this.isUser = false;
+    }
+  }
 }

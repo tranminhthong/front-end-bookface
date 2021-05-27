@@ -1,32 +1,44 @@
 <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3" id="post-card">
   <div class="card-body p-0">
-    <a href="#" class=" font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center"><i class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i>Create Post</a>
+    <a href="#" class=" font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center"><i
+      class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i>Create Post</a>
   </div>
   <div class="card-body p-0 mt-3 position-relative">
-    <figure class="avatar position-absolute ms-2 mt-1 top-5"><img [src]="currentUser?.avatar" alt="image" class="shadow-sm rounded-circle h45 w45"></figure>
-    <textarea (click)="openCreatePostModal()" name="message" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg" cols="30" rows="10" placeholder="What's on your mind?"></textarea>
+    <figure class="avatar position-absolute ms-2 mt-1 top-5"><img [src]="currentUser?.avatar" alt="image"
+                                                                  class="shadow-sm rounded-circle h45 w45"></figure>
+    <textarea style="padding: 10px" (click)="openCreatePostModal()" name="message"
+              class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg"
+              cols="30" rows="10" placeholder="     What's on your mind?"></textarea>
   </div>
   <div class="card-body d-flex p-0 mt-0">
-    <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i class="font-md text-danger feather-video me-2"></i><span class="d-none-xs">Live Video</span></a>
-    <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i class="font-md text-success feather-image me-2"></i><span class="d-none-xs">Photo/Video</span></a>
-    <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i class="font-md text-warning feather-camera me-2"></i><span class="d-none-xs">Feeling/Activity</span></a>
-    <a href="#" class="ms-auto" id="dropdownMenu4" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+    <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
+      class="font-md text-danger feather-video me-2"></i><span class="d-none-xs">Live Video</span></a>
+    <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
+      class="font-md text-success feather-image me-2"></i><span class="d-none-xs">Photo/Video</span></a>
+    <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
+      class="font-md text-warning feather-camera me-2"></i><span class="d-none-xs">Feeling/Activity</span></a>
+    <a href="#" class="ms-auto" id="dropdownMenu4" data-bs-toggle="dropdown" aria-expanded="false"><i
+      class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
     <div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu4">
       <div class="card-body p-0 d-flex">
         <i class="feather-bookmark text-grey-500 me-3 font-lg"></i>
-        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Save Link <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add this to your saved items</span></h4>
+        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Save Link <span
+          class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add this to your saved items</span></h4>
       </div>
       <div class="card-body p-0 d-flex mt-2">
         <i class="feather-alert-circle text-grey-500 me-3 font-lg"></i>
-        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide Post <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
+        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide Post <span
+          class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
       </div>
       <div class="card-body p-0 d-flex mt-2">
         <i class="feather-alert-octagon text-grey-500 me-3 font-lg"></i>
-        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide all from Group <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
+        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide all from Group <span
+          class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
       </div>
       <div class="card-body p-0 d-flex mt-2">
         <i class="feather-lock text-grey-500 me-3 font-lg"></i>
-        <h4 class="fw-600 mb-0 text-grey-900 font-xssss mt-0 me-4">Unfollow Group <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
+        <h4 class="fw-600 mb-0 text-grey-900 font-xssss mt-0 me-4">Unfollow Group <span
+          class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
       </div>
     </div>
   </div>
@@ -40,28 +52,35 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <figure class="avatar me-3"><img [src]="currentUser?.avatar" alt="image" class="shadow-sm rounded-circle h45 w45" ></figure>
+        <figure class="avatar me-3"><img [src]="currentUser?.avatar" alt="image"
+                                         class="shadow-sm rounded-circle h45 w45"></figure>
         <h2 class="fw-700 text-grey-900 font-xssss mt-1">{{currentUser?.username}}</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-        <div class="modal-body">
-          <form class="form-group" [formGroup]="createPostForm" (ngSubmit)="createPost()" id="createPostForm">
+      <div class="modal-body">
+        <form class="form-group" [formGroup]="createPostForm" (ngSubmit)="createPost()" id="createPostForm">
           <select class="form-control" style="margin-top: 10px; margin-bottom: 10px" [formControlName]="'privacy'">
             <option value="" selected disabled>Select Privacy</option>
-            <option value="0" >Public</option>
-            <option value="1" >Friends Only</option>
-            <option value="2" >Private</option>
+            <option value="0">Public</option>
+            <option value="1">Friends Only</option>
+            <option value="2">Private</option>
           </select>
-          <ckeditor [editor]="Editor" [formControlName]="'description'" >
+          <ckeditor [editor]="Editor" [formControlName]="'description'">
           </ckeditor>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="close-btn">Close</button>
-          <button type="submit" class="btn btn-primary" style="color: white" form="createPostForm">Post</button>
-        </div>
+          <img style="width: 100%" [src]="imgUrl">
+          <input type="file" id="file" accept="image/*" (change)="showPreviewAndSubmit($event)">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-btn">Close</button>
+        <button type="submit" class="btn btn-primary" style="color: white" form="createPostForm">Post</button>
+      </div>
 
     </div>
   </div>
 </div>
+
+
+
+

@@ -13,9 +13,10 @@ declare var $: any;
   styleUrls: ['./user-header.component.css']
 })
 export class UserHeaderComponent implements OnInit {
-  @Input() user: User = {};
+  @Input() user: User;
+  myUser: User = {};
   isMe = false;
-  @Input() id = -1;
+  id = -1;
   friendShip: Friend;
 
   constructor(private localStorage: LocalStorageService,
@@ -38,7 +39,6 @@ export class UserHeaderComponent implements OnInit {
   getFriendByDoubleId(id: number) {
     const senderId = this.localStorage.retrieve('userId');
     this.userService.getFriendByDoubleId(senderId, id).subscribe(value => {
-      console.log(value);
       this.friendShip = value;
     });
   }

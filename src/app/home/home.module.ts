@@ -16,13 +16,22 @@ import {TokenInterceptor} from '../../token-interceptor';
 import {SideBarComponent} from '../shared/side-bar/side-bar.component';
 import {HomeComponent} from './home.component';
 import {NewsfeedComponent} from '../newsfeed/newsfeed.component';
-import {AppModule} from '../app.module';
 import {PostTileComponent} from '../shared/post-tile/post-tile.component';
 import {FriendRequestSideBarComponent} from '../shared/friend-request-side-bar/friend-request-side-bar.component';
-import {EmotionComponent} from '../shared/emotion/emotion.component';
+import {EmotionComponent} from '../shared/emotions/emotion/emotion.component';
 import {CommentComponent} from '../shared/comment/comment.component';
 import {CreatePostComponent} from '../post/create-post/create-post.component';
 import {UserHeaderComponent} from '../user/user-header/user-header.component';
+import {EmotionCommentComponent} from "../shared/emotions/emotion-comment/emotion-comment.component";
+import {MutualFriendComponent} from '../user/mutual-friend/mutual-friend.component';
+import {SearchFriendComponent} from '../user/search-friend/search-friend.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { FriendButtonComponent } from '../user/friend-button/friend-button.component';
+import {AdminComponent} from '../admin/admin.component';
+import {AuthGuard} from '../auth/auth.guard';
+import {AdminModule} from '../admin/admin.module';
+import {Routes} from '@angular/router';
+import {MemberComponent} from '../admin/member/member.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +44,13 @@ import {UserHeaderComponent} from '../user/user-header/user-header.component';
     PostTileComponent,
     FriendRequestSideBarComponent,
     EmotionComponent,
+    EmotionCommentComponent,
     CommentComponent,
     CreatePostComponent,
-    UserHeaderComponent
+    UserHeaderComponent,
+    MutualFriendComponent,
+    SearchFriendComponent,
+    FriendButtonComponent,
   ],
   exports: [
     SideBarComponent
@@ -53,12 +66,14 @@ import {UserHeaderComponent} from '../user/user-header/user-header.component';
     AngularFireDatabaseModule,
     CKEditorModule,
     NgbModule,
+    InfiniteScrollModule,
+    AdminModule
   ],
 
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }]
+  },AuthGuard]
 })
 export class HomeModule { }

@@ -1,0 +1,4 @@
+<div class="card-body d-flex p-0 mt-3">
+  <a type="button" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i (click)="onLikeComment()" [ngClass]="{'bg-primary':liked, 'bg-grey': !liked} " class="feather-thumbs-up text-white  me-1 btn-round-xs font-xss"></i> {{comment?.likeCount}} Like</a>
+  <a type="button" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i (click)="onHeartComment()" [ngClass]="{'bg-red-gradiant':hearted, 'bg-grey': !hearted}" class="feather-heart text-white me-2 btn-round-xs font-xss"></i> {{comment?.heartCount}} Heart</a>
+</div>

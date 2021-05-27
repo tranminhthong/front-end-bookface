@@ -4,7 +4,9 @@ import {LoginRequestPayload} from './login.request.payload';
 import {AuthService} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {throwError} from 'rxjs';
+import {BehaviorSubject, throwError} from 'rxjs';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +18,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage: string;
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,
-              private router: Router, private toastr: ToastrService) {
+              private router: Router, private toastr: ToastrService,
+              private spinner: NgxSpinnerService) {
     this.loginRequestPayload = {
       username: '',
       password: ''
@@ -45,10 +49,22 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+
+    if (this.isLoading$.getValue()) {
+      return
+    }
+
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
 
-    this.authService.login(this.loginRequestPayload).subscribe(data => {
+    this.spinner.show();
+    this.isLoading$.next(true);
+    this.authService.login(this.loginRequestPayload)
+      .pipe(finalize(() => {
+        this.spinner.hide();
+        this.isLoading$.next(false);
+      } ))
+      .subscribe(data => {
       this.router.navigateByUrl('');
       this.toastr.success('Login Successful');
     }, error => {
