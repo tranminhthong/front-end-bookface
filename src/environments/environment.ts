@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080',
+  apiUrl: 'https://book-face-be.herokuapp.com',
   firebaseConfig: {
     apiKey: 'AIzaSyAzjvclwX9lyH3u4OkS0FGSUVbTYQbL4Ac',
     authDomain: 'fir-upload-7af9a.firebaseapp.com',
