@@ -47,6 +47,7 @@ export class CommentComponent implements OnInit {
   createComment() {
     this.commentModel.text = this.addCommentForm.get('text').value;
     this.commentModel.postId = this.post.id;
+    this.commentModel.userAvatar = this.post.userAvatar;
     this.commentService.createComment(this.commentModel).subscribe(
       data => {
         console.log('Created comment');
@@ -88,6 +89,12 @@ export class CommentComponent implements OnInit {
     if (mode === 'edit') {
       this.editComment = comment;
       console.log(this.editComment);
+      this.editCommentForm = new FormGroup({
+        id: new FormControl(this.editComment.id),
+        text: new FormControl(this.editComment.text),
+        likeCount: new FormControl(this.editComment.likeCount),
+        heartCount: new FormControl(this.editComment.heartCount)
+      });
       button.setAttribute('data-bs-target', '#editCommentModal');
     }
     if (mode === 'delete') {
@@ -106,7 +113,7 @@ export class CommentComponent implements OnInit {
     this.commentService.updateComment(this.editComment).subscribe(
       response => {
         console.log(response);
-        document.getElementById("close-edit-btn").click();
+        document.getElementById("close-edit-comment-btn").click();
         this.getAllCommentForPost();
       },
       (error: HttpErrorResponse) => {
@@ -118,7 +125,7 @@ export class CommentComponent implements OnInit {
   deleteComment() {
     this.commentService.deleteComment(this.deletedComment.id).subscribe(
       () => {
-        document.getElementById("close-delete-btn").click();
+        document.getElementById("close-delete-comment-btn").click();
         this.getAllCommentForPost();
       },
       (error: HttpErrorResponse) => {

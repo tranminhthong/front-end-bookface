@@ -59,4 +59,21 @@ export class FriendButtonComponent implements OnInit {
       this.friendShip = value;
     });
   }
+
+  openModal(mode: string) {
+    const container = document.getElementById('friend');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-bs-toggle', 'modal');
+    if (mode === 'decline'){
+      button.setAttribute('data-bs-target', '#decline');
+    }
+    if (mode === 'unfriend'){
+      button.setAttribute('data-bs-target', '#unfriend');
+    }
+
+    container.appendChild(button);
+    button.click();
+  }
 }

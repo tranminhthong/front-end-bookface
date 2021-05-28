@@ -48,6 +48,7 @@ export class PostTileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
+    this.getAllPost();
   }
 
   goToPost(id: number): void {
@@ -90,18 +91,20 @@ export class PostTileComponent implements OnInit {
     this.editPost.postId = this.editPostForm.get('id').value;
     this.editPost.privacy = + this.editPostForm.get('privacy').value;
     this.editPost.description = this.editPostForm.get('description').value;
-    this.editPost.description += `
+    if(this.imgUrl !== ''){
+      this.editPost.description += `
     <div class="card-body d-block p-0 mb-3">
   <div class="row ps-2 pe-2">
-    <div class="col-sm-12 p-1"><img src="${this.imgUrl}" class="rounded-3 w-100" alt="image"></div>
+    <div class="col-sm-12 p-1"><img src="${this.imgUrl}" style="width: 100%" class="rounded-3 w-100" alt="image"></div>
   </div>
 </div>`;
+    }
     this.editPost.likeCount = + this.editPostForm.get('likeCount').value;
     this.editPost.heartCount = + this.editPostForm.get('heartCount').value;
     console.log(this.editPost);
     this.postService.updatePost(this.editPost).subscribe(
       (data) => {
-        document.getElementById("close-edit-btn").click();
+        this.getAllPost();
       },
       (error) => {
         console.log(error.message);
@@ -109,11 +112,14 @@ export class PostTileComponent implements OnInit {
     )
     this.editPostForm.reset();
     this.imgUrl = '';
+    const close = document.getElementById("close-post-edit-btn");
+    close.click();
   }
 
   onDeletePost() {
       this.postService.deletePostById(this.deletePost.id).subscribe(
         () => {
+          this.getAllPost();
         document.getElementById("close-delete-button").click();
         },
         (e) => { console.log(e.message)}
@@ -124,9 +130,15 @@ export class PostTileComponent implements OnInit {
     this.router.navigateByUrl('users/user-profile/' + userId);
   }
 
-
   async showPreviewAndSubmit(event) {
     this.uploadService.showPreview(event);
     this.imgUrl = await this.uploadService.submit();
+  }
+
+  getAllPost(){
+    this.postService.getAllPosts().subscribe(
+      data => this.posts = data,
+      error => console.log(error.message)
+    )
   }
 }
