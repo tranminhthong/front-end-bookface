@@ -56,23 +56,26 @@ export class CreatePostComponent implements OnInit {
 
   onCreatePost(post: PostModel){
     console.log("Emit post create", post);
-    this.createdPostEvent.emit(post)
+    this.createdPostEvent.emit(post);
   }
 
   createPost() {
     this.postPayload.privacy = + this.createPostForm.get('privacy').value;
     this.postPayload.description = this.createPostForm.get('description').value;
-    this.postPayload.description += `
+    if(this.imgUrl !== ''){
+      this.postPayload.description += `
     <div class="card-body d-block p-0 mb-3">
   <div class="row ps-2 pe-2">
-    <div class="col-sm-12 p-1"><img src="${this.imgUrl}" class="rounded-3 w-100" alt="image"></div>
+    <div class="col-sm-12 p-1"><img src="${this.imgUrl}" style="width: 100%" class="rounded-3 w-100" alt="image"></div>
   </div>
 </div>`;
+    }
     this.postPayload.likeCount = 0;
     this.postPayload.heartCount = 0;
 
     this.postService.createPost(this.postPayload).subscribe((data) => {
       this.postCreated = data;
+      console.log(this.postCreated);
       this.onCreatePost(this.postCreated);
       this.createPostForm.reset();
       const closeBtn = document.getElementById('close-btn');

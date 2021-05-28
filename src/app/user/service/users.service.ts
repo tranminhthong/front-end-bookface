@@ -27,6 +27,9 @@ export class UsersService {
   getFriendByDoubleId(senderId: number, receiverId: number): Observable<Friend> {
     return this.http.get(`${API_URL}/friend/search/${senderId}/${receiverId}`);
   }
+  getAllFriendsByIdReceiver(receiverId: number): Observable<Friend[]> {
+    return this.http.get<Friend[]>(`${API_URL}/friend/listFriends/${receiverId}`);
+  }
 
   addFriendInFriendsUser(friendShip: Friend): Observable<Friend> {
     return this.http.post<Friend>(`${API_URL}/friend/add-waiting`, friendShip);

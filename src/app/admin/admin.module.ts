@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MemberBlockComponent } from './member-block/member-block.component';
 import {AdminRoutingModule} from './admin-routing.module';
 import {AdminComponent} from './admin.component';
 import {MemberComponent} from './member/member.component';
+import {HomeRoutingModule} from '../home/home-routing.module';
 
 
 
 @NgModule({
   declarations: [
-    MemberBlockComponent,
     AdminComponent,
     MemberComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    HomeRoutingModule
   ]
 })
 export class AdminModule { }

@@ -11,7 +11,6 @@ export class MemberComponent implements OnInit {
 
 
   @Input() user: User;
-  @Input() userBlocked: User;
 
   @Output() eventEmitter: EventEmitter<any> = new EventEmitter<any>();
   constructor(private userService: UsersService) { }

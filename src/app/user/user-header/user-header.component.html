@@ -1,7 +1,7 @@
 <div class="col-lg-12">
   <div class="card w-100 border-0 p-0 bg-white shadow-xss rounded-xxl">
-    <div class="card-body h240 p-0 rounded-xxl overflow-hidden m-3 z-index-1"><a [href]="user.avatar" data-lightbox="roadtrip"><img class="position-absolute w-100" style="z-index: 0 !important;" [src]="user.avatar"
-                                                                                                                                    alt="image"></a></div>
+    <div class="card-body h250 p-0 rounded-xxl overflow-hidden m-3"><img src="https://img.wallpapersafari.com/desktop/1024/576/47/40/e8CiPB.jpg"
+                                                                         alt="image"></div>
     <div class="card-body p-0 position-relative">
       <figure class="avatar position-absolute w100 h100 z-index-1" style="top:-40px; left: 30px;">
         <a [href]="user.avatar" data-lightbox="roadtrip"><img
@@ -43,12 +43,22 @@
             </div>
           </div>
           <div *ngIf="friendShip && friendShip.status == true" style="text-align: center; width: 170px">
-            <div
-              class="d-none d-lg-block cursor-pointer  bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3 btn-outline-secondary "
-                 (click)="unFriend()">Unfriend
+
+            <div class="dropdown">
+              <button type="button" style="width: 160px" class="btn btn-light fw-500 p-2 text-center" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="2.2rem" height="25" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 18 17">
+                <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg>Friend</button>
+              <div class="dropdown-menu">
+                <li ><div type="button" class="w-100 dropdown-item text-center fw-400" (click)="unFriend()"> <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="25" fill="currentColor" class="bi bi-person-x" viewBox="0 0 18 18">
+                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                </svg>Unfriend</div></li>
+              </div>
             </div>
           </div>
         </div>
+
 
         <a href="#" title="send mail" class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"><i
           class="feather-mail font-md"></i></a>
