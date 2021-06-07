@@ -5,6 +5,7 @@ import {UsersService} from '../service/users.service';
 import {ActivatedRoute} from '@angular/router';
 import {UploadFileService} from '../../upload/upload-file.service';
 import {LocalStorageService} from 'ngx-webstorage';
+import {ToastrService} from 'ngx-toastr';
 
 declare var $: any;
 
@@ -34,7 +35,8 @@ export class UpdateProfileComponent implements OnInit {
   constructor(private userService: UsersService,
               private activatedRoute: ActivatedRoute,
               private uploadService: UploadFileService,
-              private localStorage: LocalStorageService) {
+              private localStorage: LocalStorageService,
+              private toastr: ToastrService) {
     if (localStorage.retrieve('userId')){
       this.activatedRoute.paramMap.subscribe(paramMap => {
         this.id = +paramMap.get('id');
@@ -73,6 +75,7 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.updateUserProfile(id, userUpdate).subscribe(user => {
       this.user = user;
       this.getUser(id);
+      this.toastr.success("Update Successful !")
     });
   }
 

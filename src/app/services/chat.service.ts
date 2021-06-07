@@ -23,4 +23,7 @@ export class ChatService {
     return this.http.get<Message>(API_URL + `/chats/${id}`);
   }
 
+  getAllChat(user1Id: number, user2Id: number, size: number): Observable<Message[]> {
+      return this.http.get<Message[]>(`${API_URL}/chats?userId1=${user1Id}&userId2=${user2Id}&size=${size}`)
+  }
 }

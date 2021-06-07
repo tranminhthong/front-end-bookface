@@ -1,7 +1,9 @@
+import {User} from '../user/user';
+
 export class Message{
   id?: number;
-  sender?: any;
-  receiver?: any;
+  sender?: User;
+  receiver?: User;
   content?: string;
-  createTime?: string;
+  createdTime?: string;
 }
