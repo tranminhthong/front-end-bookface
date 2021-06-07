@@ -164,6 +164,64 @@
         {{username}}
       </button>
     </div>
+    <div class="right-chat mt-2 right-scroll-bar">
+      <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxl">
+
+        <!-- loader wrapper -->
+        <div class="preloader-wrap p-3">
+          <div class="box shimmer">
+            <div class="lines">
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+            </div>
+          </div>
+          <div class="box shimmer mb-3">
+            <div class="lines">
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+            </div>
+          </div>
+          <div class="box shimmer">
+            <div class="lines">
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+              <div class="line s_shimmer"></div>
+            </div>
+          </div>
+        </div>
+        <!-- loader wrapper -->
+
+        <div class="section full pe-3 ps-4 pt-4 pb-0 position-relative feed-body">
+          <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">CONTACTS</h4>
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let user of users" class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
+              <figure class="avatar float-left mb-0 me-2">
+                <img [src]="user.avatar" alt="image" class="w35 h35">
+              </figure>
+              <h3 class="fw-700 mb-0 mt-0">
+                <a (click)="openChatBoxModal(user)" type="button" class="font-xssss text-grey-600 d-block text-dark model-popup-chat">{{user?.username}}</a>
+              </h3>
+              <span class="badge badge-primary text-white badge-pill fw-500 mt-0">2</span>
+
+            </li>
+          </ul>
+          <div>
+            <button type="button" style="display: none !important;" id="open-chat-modal-btn" class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Chat Button</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- right chat -->
+
+      <app-chat-box [currentUser]="user" [receiver]="receiver"></app-chat-box>
+
+
+    <!-- right chat -->
   </div>
   <!-- navigation top -->
   <!-- navigation top for guest-->
@@ -182,68 +240,6 @@
   </div>
   <!-- navigation top -->
 
-  <!-- right chat -->
-  <div *ngIf="isLoggedIn" class="right-chat nav-wrap mt-2 right-scroll-bar">
-    <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxl">
 
-      <!-- loader wrapper -->
-      <div class="preloader-wrap p-3">
-        <div class="box shimmer">
-          <div class="lines">
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-          </div>
-        </div>
-        <div class="box shimmer mb-3">
-          <div class="lines">
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-          </div>
-        </div>
-        <div class="box shimmer">
-          <div class="lines">
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-            <div class="line s_shimmer"></div>
-          </div>
-        </div>
-      </div>
-      <!-- loader wrapper -->
-
-      <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
-        <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">CONTACTS</h4>
-        <ul class="list-group list-group-flush">
-          <li *ngFor="let user of users" class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
-            <figure class="avatar float-left mb-0 me-2">
-              <img [src]="user.avatar" alt="image" class="w35">
-            </figure>
-            <h3 class="fw-700 mb-0 mt-0">
-              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">{{user?.username}}</a>
-            </h3>
-            <span class="badge badge-primary text-white badge-pill fw-500 mt-0">2</span>
-
-          </li>
-<!--          <li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">-->
-<!--            <figure class="avatar float-left mb-0 me-2">-->
-<!--              <img src="https://via.placeholder.com/50x50.png" alt="image" class="w35">-->
-<!--            </figure>-->
-<!--            <h3 class="fw-700 mb-0 mt-0">-->
-<!--              <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">Hurin Seary</a>-->
-<!--            </h3>-->
-<!--            <span class="badge badge-primary text-white badge-pill fw-500 mt-0">2</span>-->
-<!--          </li>-->
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
-<app-chat-box [receiver]="receiver"></app-chat-box>
-  <!-- right chat -->
 
 

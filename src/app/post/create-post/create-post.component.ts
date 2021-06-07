@@ -24,6 +24,7 @@ import {UploadFileService} from '../../upload/upload-file.service';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+  isLoggedIn: boolean;
   public Editor = ClassicEditor;
   currentUser: User;
   createPostForm: FormGroup;
@@ -37,6 +38,7 @@ export class CreatePostComponent implements OnInit {
               private authService: AuthService,
               private uploadService: UploadFileService,
               private route: Router) {
+
     this.postPayload = {
       description: '',
       privacy: 0,

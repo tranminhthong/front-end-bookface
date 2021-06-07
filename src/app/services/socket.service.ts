@@ -6,7 +6,8 @@ import {environment} from '../../environments/environment';
 import {User} from '../user/user';
 import {AuthService} from '../auth/auth.service';
 import {UsersService} from '../user/service/users.service';
-import {LocalStorageService} from 'ngx-webstorage';
+import {Message} from '../chat-box/message-model';
+import {Subject} from 'rxjs';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -19,10 +20,10 @@ declare var Swal: any;
 export class SocketService {
   stompClient: any;
   currentUser: User;
+  messageSubject = new Subject<any>();
 
   constructor(private authService: AuthService,
               private userService: UsersService,
-              private localStorage: LocalStorageService
               ) {
     this.getCurrentUser();
   }
@@ -34,13 +35,10 @@ export class SocketService {
       this.stompClient.subscribe('/topic/chats', (messageOutput) => {
         let data = JSON.parse(messageOutput.body);
         this.getCurrentUser();
-          if (this.currentUser.userId == data.receiver.id) {
-            this.drawNewChatMessage(data, this.currentUser);
-            setTimeout(() => {
-              message.nativeElement.scrollTop = message.nativeElement.scrollHeight;
-            }, 1);
+          if (this.currentUser.userId == data.receiver.userId) {
+            //do something
+            this.messageSubject.next(data);
           }
-
       });
     });
   };
@@ -64,15 +62,7 @@ export class SocketService {
     )
   }
 
-  drawNewChatMessage(messageOutput, currentUser) {
+  drawNewChatMessage(messageOutput: Message, receiver) {
     console.log(messageOutput);
-    console.log(currentUser);
-    // let ul = document.getElementById('history');
-    // let firstLi = $('ul#history li:first').get(0);
-    // let li = firstLi.cloneNode(true);
-    // li.innerHTML = messageOutput.content;
-    // let className = currentUser.id == messageOutput.sender.id ? 'me' : 'you';
-    // li.setAttribute('class', className);
-    // ul.appendChild(li);
   }
 }

@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
 import {UsersService} from '../user/service/users.service';
 import {User} from '../user/user';
+import {SocketService} from '../services/socket.service';
+import {ChatBoxComponent} from '../chat-box/chat-box.component';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +12,7 @@ import {User} from '../user/user';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild(ChatBoxComponent) chatBoxComponent: ChatBoxComponent;
   isLoggedIn: boolean;
   username: string;
   userId: number;
@@ -20,7 +23,10 @@ export class HeaderComponent implements OnInit {
   users: User[] = []
   receiver: User = {}
 
-  constructor(private authService: AuthService, private router: Router, private userService: UsersService) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private userService: UsersService,
+              private socketService: SocketService) {
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     this.authService.username.subscribe((data: string) => this.username = data);
     this.authService.userId.subscribe((data: number) => this.userId = data);
@@ -38,7 +44,6 @@ export class HeaderComponent implements OnInit {
     this.userService.getAllFriend(this.userId).subscribe(
       data => {
         this.users = data;
-        this.receiver = this.users[0];
       }
 
     )
@@ -63,6 +68,11 @@ export class HeaderComponent implements OnInit {
 
   search(key: string) {
     this.router.navigateByUrl('/users/search/' + key);
+  }
+
+  openChatBoxModal(user: User) {
+    this.receiver = user;
+    document.getElementById("open-chat-modal-btn").click();
   }
 }
 

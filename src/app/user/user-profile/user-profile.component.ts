@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
               private localStorage: LocalStorageService,
               private postService: PostService) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.id = +paramMap.get('id');
+      this.id = + paramMap.get('id');
       this.getUser(this.id);
       this.getAllFriend(this.id);
       this.getAllPostsById(this.id);

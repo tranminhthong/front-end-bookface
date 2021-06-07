@@ -3,7 +3,7 @@
     <div class="card-body p-0 d-flex">
       <figure class="avatar me-3 font-xssss"><img [src]="post?.userAvatar" alt="avatar" class="shadow-sm rounded-circle w45 h45"></figure>
       <a type="button" class="fw-700 text-grey-900 font-xsss mt-1" (click)="goToUserProfile(post.userId)">{{post?.userName}}<span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">{{post.duration}}</span></a>
-      <a *ngIf="post.userName === currentUser.username" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+      <a *ngIf="post?.userName === currentUser?.username" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
       <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
         <div class="card-body p-0 d-flex">
           <i class="feather-bookmark text-grey-500 me-3 font-lg"></i>
@@ -16,7 +16,6 @@
       </div>
     </div>
     <div class="card-body d-block p-0" [innerHTML]="post.description">
-
     </div>
 <app-emotion [post]="post"></app-emotion>
 <app-comment [post]="post"></app-comment>

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostModel} from '../../post/post-model';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../services/post.service';
 import {User} from '../../user/user';
 import {AuthService} from '../../auth/auth.service';
@@ -35,20 +35,33 @@ export class PostTileComponent implements OnInit {
   editPost: PostPayload = {};
   deletePost: PostModel;
   imgUrl: string = '';
-
+  isUserProfile: boolean;
+  id: number;
 
   constructor(private router: Router,
               private postService: PostService,
               private authService: AuthService,
               private userService: UsersService,
               private uploadService: UploadFileService,
+              private activatedRoute: ActivatedRoute
               ) {
-
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      this.id = + paramMap.get('id');
+      if(this.id){
+        this.isUserProfile = true;
+      } else {
+        this.isUserProfile = false;
+      }
+    });
   }
 
   ngOnInit(): void {
     this.getCurrentUser();
-    this.getAllPost();
+    if(this.isUserProfile){
+      this.getAllPostByUserId();
+    } else {
+      this.getAllPost();
+    }
   }
 
   goToPost(id: number): void {
@@ -91,6 +104,10 @@ export class PostTileComponent implements OnInit {
     this.editPost.postId = this.editPostForm.get('id').value;
     this.editPost.privacy = + this.editPostForm.get('privacy').value;
     this.editPost.description = this.editPostForm.get('description').value;
+    // let test: string  =  this.editPost.description;
+    // console.log(this.editPost.description);
+    // test.replace('img', '<img class="rounded-3 w-100"')
+    // console.log(test);
     if(this.imgUrl !== ''){
       this.editPost.description += `
     <div class="card-body d-block p-0 mb-3">
@@ -104,7 +121,11 @@ export class PostTileComponent implements OnInit {
     console.log(this.editPost);
     this.postService.updatePost(this.editPost).subscribe(
       (data) => {
-        this.getAllPost();
+        if(this.isUserProfile){
+          this.getAllPostByUserId();
+        } else {
+          this.getAllPost();
+        }
       },
       (error) => {
         console.log(error.message);
@@ -119,7 +140,11 @@ export class PostTileComponent implements OnInit {
   onDeletePost() {
       this.postService.deletePostById(this.deletePost.id).subscribe(
         () => {
-          this.getAllPost();
+          if(this.isUserProfile){
+            this.getAllPostByUserId();
+          } else {
+            this.getAllPost();
+          }
         document.getElementById("close-delete-button").click();
         },
         (e) => { console.log(e.message)}
@@ -137,6 +162,13 @@ export class PostTileComponent implements OnInit {
 
   getAllPost(){
     this.postService.getAllPosts().subscribe(
+      data => this.posts = data,
+      error => console.log(error.message)
+    )
+  }
+
+  getAllPostByUserId(){
+    this.postService.getAllPostsByUserId(this.id).subscribe(
       data => this.posts = data,
       error => console.log(error.message)
     )
